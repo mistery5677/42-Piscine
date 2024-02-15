@@ -1,16 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 18:51:29 by miafonso          #+#    #+#             */
-/*   Updated: 2024/02/15 11:26:02 by miafonso         ###   ########.fr       */
+/*   Created: 2024/02/14 14:09:22 by miafonso          #+#    #+#             */
+/*   Updated: 2024/02/15 11:26:14 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <unistd.h>
 
 int	check_errors(char *base)
 {
@@ -38,9 +36,14 @@ int	check_errors(char *base)
 	return (0);
 }
 
-void	ft_putchar(char c)
+char	*skip_spaces(char *str)
 {
-	write(1, &c, 1);
+	int	i;
+
+	i = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	return (str + i);
 }
 
 int	ft_strlen(char *str)
@@ -49,38 +52,59 @@ int	ft_strlen(char *str)
 
 	i = 0;
 	while (str[i])
-	{
 		i++;
-	}
 	return (i);
 }
 
-void	ft_putnbr_base(int nbr, char *base)
+int	find_char(char c, char *base)
 {
-	int		i;
-	long	lnbr;
+	int	j;
 
-	lnbr = nbr;
-	i = 0;
-	if (check_errors(base) == 0)
+	j = 0;
+	while (base[j] != c && base[j])
 	{
-		if (lnbr < 0)
-		{
-			write(1, "-", 1);
-			lnbr *= -1;
-		}
-		if (lnbr >= ft_strlen(base))
-		{
-			ft_putnbr_base(lnbr / ft_strlen(base), base);
-		}
-		ft_putchar(base[lnbr % ft_strlen(base)]);
+		j++;
+		if (base[j] == '\0')
+			return (j + 2);
 	}
+	return (j);
 }
 
-/*int	main(void)
+int	ft_atoi_base(char *str, char *base)
 {
-	int nbr = 20;
-	char *base = "01";
+	int			len_base;
+	int			i;
+	long int	nbr_final;
+	int			signal;
 
-	ft_putnbr_base(nbr, base);
+	signal = 1;
+	nbr_final = 0;
+	i = 0;
+	len_base = ft_strlen(base);
+	if (check_errors(base) == 0)
+	{
+		str = skip_spaces(str);
+		while (str[i] == '-' || str[i] == '+')
+		{
+			if (str[i] == '-')
+				signal *= -1;
+			i++;
+		}
+		while (find_char(str[i], base) < len_base)
+		{
+			nbr_final = (nbr_final * len_base) + (find_char(str[i], base));
+			i++;
+		}
+	}
+	return (nbr_final * signal);
+}
+
+/*#include <stdio.h>
+
+int	main(void)
+{
+	char *str = "   -FF";
+	char *base = "0123456789ABCDEF";
+	// char *clean = ft_strfinal(str, base);
+	printf("%d\n", ft_atoi_base(str, base));
 }*/

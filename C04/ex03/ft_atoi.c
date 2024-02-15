@@ -6,7 +6,7 @@
 /*   By: miafonso <miafonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 10:31:17 by miafonso          #+#    #+#             */
-/*   Updated: 2024/02/05 10:31:48 by miafonso         ###   ########.fr       */
+/*   Updated: 2024/02/10 12:35:49 by miafonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@ int	skip_spaces(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] == ' ')
-	{
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
-	}
 	return (i);
 }
 
@@ -69,7 +67,7 @@ int main()
 {
 	char *teste;
 
-	teste = "  --+-123";
+	teste = "1325632";
 
 	printf("%d", ft_atoi(teste));
 }*/
