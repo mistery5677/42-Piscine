@@ -49,13 +49,3 @@ struct s_stock_str *ft_strs_to_tab(int ac, char **av)
     
     return arr;
 }
-
-int main(int argc, char **argv)
-{
-    (void)argc;
-    t_stock_str *arr = ft_strs_to_tab(argc, argv);
-    printf("tamanho: %d \n", arr[1].size);
-    printf("string: %s \n", arr[2].str);
-    printf("copy: %s \n", arr[3].copy);
-    free(arr);
-}
