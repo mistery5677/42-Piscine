@@ -1,3 +1,6 @@
+#ifndef FT_BOOLEAN_H
+# define FT_BOOLEAN_H
+
 #include <stdbool.h>
 #include <unistd.h>
 #define EVEN_MSG "I have an even number of arguments.\n"
@@ -18,3 +21,4 @@ bool EVEN(int nbr)
     else
         return false;
 }
+#endif
