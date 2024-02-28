@@ -8,7 +8,7 @@ int count_words(char *str, char *charset)
     int words;
 
     i = 0;
-    words = 0;
+    words = 1;
     while(str[i])
     {
         j = 0;
@@ -21,48 +21,53 @@ int count_words(char *str, char *charset)
     return words;
 }
 
-int len_word(char *str, char *charset, int index)
+int len_word(char *str, char *charset)
 {
     int i;
     int j;
 
     i = 0;
-    while(str[index])
+    printf("string %s\n", str);
+    while(str[i])
     {
         j = 0;
-        while(charset[j] && (charset[j] != str[index]))
+        while(charset[j] != '\0' && (charset[j] != str[i]))
             j++;
         if(charset[j] == str[i])
+        {
+            printf("Meio %d\n\n", i);
             return i;
-        else
-            i++;
-        index++;
+        }
+        i++;
     }
+    printf("Terminou %d\n\n", i);
     return i;
 }
 
-char **ft_split(char *str, char *charset)
+int ft_split(char *str, char *charset)
 {
     char **split;
     int i; //percorrer a "str"
-    int j; //percorrer o "split"
+    //int j; //percorrer o "split"
+    int words;
 
+    words = count_words(str,charset);
     i = 0;
     //split = malloc((count_words(str, charset) + 1) * sizeof(char));
-    while(str[i])
+    printf("Words %d\n\n", count_words(str,charset));
+    while(i < words)
     {
         //split[j] = malloc((len_word(str, charset, i)) *sizeof(char))
-        i = len_word(str, charset, i);
-        printf("%d\n", len_word(str,charset, i));
+        str = (str + len_word(str, charset)) + 1;
         i++;
     }
-    return split;
+    return 1;
 }
 
 int main()
 {
-    char str[15] = "world 4 bora";
-    char *charset = "4";
+    char str[15] = "hello4 l4j4jjj";
+    char *charset = "04";
 
-    printf("%s\n", *ft_split(str,charset));
+    printf("final %d\n", ft_split(str,charset));
 }
