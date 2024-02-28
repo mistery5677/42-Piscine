@@ -1,0 +1,48 @@
+all --> Isto representa uma diretiva, OBRIGATÓRIO EM TODOS OS FICHEIROS MAKEFILE
+    gcc ...
+
+///////EXEMPLO///////
+
+all: new_dir
+    gcc ...
+
+new_dir:
+    mkdir teste
+
+Output
+    Vai criar um arquivo chamado teste.
+
+////////FINAL////////
+
+
+Como nas funções também podemos definir valores
+
+SRC = ./src --> Estou a definir a palavra SRC em ./src
+
+
+///////EXEMPLO///////
+SRC = ./src
+
+all: 
+    $(SRC)/*.c //Está a indicar que vai à pasta "./src" e pegar em todos os ficheiros ".c"
+
+////////FINAL////////
+
+
+Um outro caso muito útil é no caso de termos um ficheiro que seja necessário compilar muitos ficheiros, onde pode demorar muito tempo na compilação.
+Para impedir isso, podemos utilizar uma boa prática de código
+
+
+///////EXEMPLO///////
+
+$(OBJ)/exemplo.o : $(SRC)/teste.c $(INCLUDE)/teste.o --> Ficheiros de dependência ... São ficheiros que são necessários na compilação final, que de certo modo estão conectados
+
+-----> Nós podemos ter outra forma de fazer <-----
+
+exemplo: $(OBJ)/float_vector.o $(OBJ)/float_vector.o
+
+$(OBJ)/%.o : $(SRC)/%.c $(INCLUDE)/%.o
+
+Com o "%", vai pegar a informação das target diretivas, e substituir o valor do "%"
+
+////////FINAL////////
