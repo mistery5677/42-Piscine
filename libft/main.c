@@ -45,12 +45,29 @@ int main()
     printf("TESTING FT_BZERO \n\n");
     printf("Before zeroing: %s\n", str2);
     ft_bzero(str2, 3);
-    printf("After zeroing: %s\n", str2);
+    printf("After zeroing: %s\n\n", str2);
 
     char *src = "hello";
     char dest[3];
     printf("TESTING FT_MEMCPY \n\n");
     printf("Before memcpy: %s\n", dest);
     ft_memcpy(dest, src, 3);
-    printf("After memcpy: %s\n", dest);
+    printf("After memcpy: %s\n\n", dest);
+
+    char dest_memmove[10] = "hello";
+    char src_memmove[10] = "world";
+
+    printf("TESTING FT_MEMMOVE \n\n");
+    printf("before: str1 %s str2 %s\n", dest_memmove, src_memmove);
+    ft_memmove(dest_memmove, src_memmove, 4);
+    printf("after: str1 %s str2 %s\n\n", dest_memmove, src_memmove);
+
+    char strlcpy_dest[5] = "hello";
+    char strlcpy_src[5] = "world";
+
+    printf("TESTING FT_STRLCPY \n\n");
+    printf("antes: %s\n", strlcpy_dest);
+    ft_strlcpy(strlcpy_dest, strlcpy_src, 3);
+    printf("depois: %s %d\n\n", strlcpy_dest, ft_strlcpy(strlcpy_dest,strlcpy_src, 3));
+
 }
