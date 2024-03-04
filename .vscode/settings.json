@@ -4,6 +4,7 @@
         "ft_boolean.h": "c",
         "stdbool.h": "c",
         "unistd.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "libft.h": "c"
     }
 }
