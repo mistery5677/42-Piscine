@@ -95,8 +95,8 @@ int main()
 
     char str_dup[10] = "hello";
     char str_dup2[10] = "hello";
-	char *str_dupp = ft_strdup(str);
-    char *str_dupp2 = strdup(str);
+	char *str_dupp = ft_strdup(str_dup);
+    char *str_dupp2 = strdup(str_dup2);
     printf("TESTING FT_STRDUP \n\n");
 	printf("my: %s\n", str_dupp);
     printf("original: %s\n\n", str_dupp2);
@@ -121,14 +121,13 @@ int main()
     char s1_memcmp[] = "hello";
     char s2_memcmp[] = "hello";
     printf("TESTING FT_MEMCMP\n\n");
-    printf("my: %d\n", ft_memcmp(s1_memcmp, s2_memcmp, 7));
-    printf("original: %d\n\n", memcmp(s1_memcmp, s2_memcmp, 7));
+    printf("my: %d\n", ft_memcmp(s1_memcmp, s2_memcmp, 5));
+    printf("original: %d\n\n", memcmp(s1_memcmp, s2_memcmp, 5));
 
     const char big_strnstr[] = "heoloolpo";
     const char little_strnstr[] = "ool";
     printf("TESTING FT_STRNSTR \n\n");
     printf("mine: %s\n", ft_strnstr(big_strnstr, little_strnstr,9));
-    printf("original: %s\n\n", strnstr(big_strnstr, little_strnstr, 9));
 
     const char nptr_atoi[] = "-3339999";
     printf("TESTING FT_ATOI \n\n");
@@ -149,9 +148,9 @@ int main()
         for (size_t i = 0; i < numInts; i++) {
             printf("%d ", intArray[i]);
         }
-        printf("String: %s\n", intArray);
+        printf("String: %ls\n", intArray);
         printf("\n");
-        free(intArray); // Free allocated memory
+        free(intArray); 
     } else {
         printf("Memory allocation failed\n");
     }
@@ -163,12 +162,24 @@ int main()
 
     printf("\nTest Case 2: Allocating memory for a string\n");
     str_calloc = (char *)ft_calloc(strLength, charSize);
-    if (str != NULL) {
+    if (str_calloc != NULL) {
         printf("Memory allocation successful\n");
         // Check if the memory is properly initialized to '\0' (null characters)
         printf("String: %s\n\n", str_calloc);
-        free(str); // Free allocated memory
+        free(str_calloc); 
     } else {
         printf("Memory allocation failed\n");
     }
+
+    const char sub_substr[] = "hello world";
+    char *result_substr = ft_substr(sub_substr, 3, 4);
+    printf("TESTING FT_SUBSTR \n\n");
+    printf("meu: %s\n\n", result_substr);
+
+    const char s1_strjoin[] = "hello ";
+    const char s2_strjoin[] = "world";
+    char *result_strjoin = ft_strjoin(s1_strjoin, s2_strjoin);
+    printf("TESTING FT_STRJOIN \n\n");
+    printf("meu: %s\n\n", result_strjoin);
+    free(result_strjoin);
 }
