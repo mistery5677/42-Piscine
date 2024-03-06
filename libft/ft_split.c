@@ -1,4 +1,5 @@
 #include "libft.h"
+#include <stdio.h>
 
 int count_words(char const *s, char c)
 {
@@ -25,22 +26,62 @@ int count_words(char const *s, char c)
         return words;
 }
 
-/*char **ft_split(char const *s, char c)
+int word_size(char const *s, char c)
 {
-        
-}*/
+        int i;
+
+        i = 0;
+        while(s[i] != c)
+                i++;
+        return i;
+}
+
+void build_str(char *str, const char *s, char c)
+{
+        int i;
+
+        i = 0;
+        while(s[i] != c)
+        {
+                str[i] = s[i];
+                i++;
+        }        
+}
+char **ft_split(char const *s, char c)
+{
+        char **str_split;
+        size_t i;
+        size_t word;
+
+        word = 0;
+        i = 0;
+        str_split = malloc(count_words(s, c) * sizeof(char));
+        while(word < count_words(s, c))
+        {
+                while(s[i] == c)
+                        i++;
+                str_split[word] = malloc(word_size(s, c) * sizeof(char));
+                build_str(str_split[word],s + i, c);
+                while(s[i] != c)
+                        i++;
+                word++;
+        }
+        return str_split;
+}
+
 
 /*int main()
 {
         char const s_ft_split[] = "eeeee";
-        char const s_ft_split1[] = "hhhhhheee";
+        char const s_ft_split1[] = "hhhhhheeehh";
         char const s_ft_split2[] = "eeeehabceeehhhh";
         char const s_ft_split3[] = "hhhhh";
         char const s_ft_split4[] = "eeehhehheee";
 
-        printf("count_words: 0 --> %d\n", count_words(s_ft_split, 'e'));
-        printf("count_words: 1 --> %d\n", count_words(s_ft_split1, 'e'));
+        ft_split(s_ft_split3, 'e');
+        /*printf("count_words: 0 --> %d\n", count_words(s_ft_split, 'e'));
+        printf("count_words: 2 --> %d\n", count_words(s_ft_split1, 'e'));
         printf("count_words: 2 --> %d\n", count_words(s_ft_split2, 'e'));
         printf("count_words: 1 --> %d\n", count_words(s_ft_split3, 'e'));
-        printf("count_words: 2 --> %d\n", count_words(s_ft_split4, 'e'));
+        printf("count_words: 2 --> %d\n", count_words(s_ft_split4, 'e'));*/
 }*/
