@@ -3,11 +3,15 @@
 void *ft_memchr(const void *s, int c, size_t n)
 {
         size_t i;
+        unsigned char *copy_s;
+        unsigned char copy_c;
 
+        copy_s = (unsigned char *)s;
+        copy_c = (unsigned char )c;
         i = 0;
-        while(((const char *)s)[i] && i < n)
+        while(i < n)
         {
-                if(((const char *)s)[i] == c)
+                if(copy_s[i] == copy_c)
                         return (void *)(s + i);
                 i++;
         }

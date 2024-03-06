@@ -24,11 +24,3 @@ int ft_atoi(const char *nptr)
     }    
     return nbr * signal;
 }
-
-int main()
-{
-    printf("TESTING FT_ATOI \n\n");
-    const char nptr_atoi[] = "-3339999";
-    printf("meu: %d\n", ft_atoi(nptr_atoi));
-    printf("original: %d\n\n", atoi(nptr_atoi));
-}
