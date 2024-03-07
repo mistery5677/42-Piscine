@@ -9,7 +9,7 @@ char	*ft_strdup(char *src)
 	i = 0;
 	str_len = ft_strlen(src);
 	dup = malloc((str_len + 1) * sizeof(char));
-	if (!(src))
+	if (!(src) || dup == NULL)
 		return (NULL);
 	while (src[i])
 	{

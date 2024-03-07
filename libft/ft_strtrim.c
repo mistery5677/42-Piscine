@@ -59,6 +59,6 @@ char *ft_strtrim(char const *s1, char const *set)
                 return ft_strdup((char *)s1);
         if(str_start > str_end)
                 return NULL;
-        str = ft_substr(s1, str_start, str_end - str_start + 1);
+        str = ft_substr(s1, str_start, str_end - str_start);
         return str;
 }

@@ -51,7 +51,7 @@ char **ft_split(char const *s, char c)
 {
         char **str_split;
         size_t i;
-        size_t word;
+        int word;
 
         word = 0;
         i = 0;
@@ -79,9 +79,9 @@ char **ft_split(char const *s, char c)
         char const s_ft_split4[] = "eeehhehheee";
 
         ft_split(s_ft_split3, 'e');
-        /*printf("count_words: 0 --> %d\n", count_words(s_ft_split, 'e'));
+        printf("count_words: 0 --> %d\n", count_words(s_ft_split, 'e'));
         printf("count_words: 2 --> %d\n", count_words(s_ft_split1, 'e'));
         printf("count_words: 2 --> %d\n", count_words(s_ft_split2, 'e'));
         printf("count_words: 1 --> %d\n", count_words(s_ft_split3, 'e'));
-        printf("count_words: 2 --> %d\n", count_words(s_ft_split4, 'e'));*/
+        printf("count_words: 2 --> %d\n", count_words(s_ft_split4, 'e'));
 }*/

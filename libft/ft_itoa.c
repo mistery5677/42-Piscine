@@ -1,6 +1,6 @@
 #include "libft.h"
 
-int divide_nbr(int n)
+size_t divide_nbr(int n)
 {
     int i;
 
@@ -43,10 +43,10 @@ void build_n(char *str, int n, int size)
 char *ft_itoa(int n)
 {
     char *str;
-    int size;
+    size_t size;
 
     size = divide_nbr(n);
-    str = ft_calloc(1, size);
+    str =  malloc((size + 1) * sizeof(char));
     if (n >= 0)
         build_p(str, n, size);
     else
