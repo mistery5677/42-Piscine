@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <ctype.h>
+
 #include "libft.h"
 
 int main()
@@ -211,4 +212,13 @@ int main()
     printf("0 --> %s\n", ft_itoa(0));
     printf("-123 --> %s\n", ft_itoa(-123));
     //printf("divided by %d\n", divide_nbr(n_itoa));
+
+    printf("TESTING FT_PUTCHAR_FD \n\n");
+    int fd_putchar = open("fd_putchar.txt", O_CREAT | S_IRWXU | O_WRONLY | O_APPEND);
+    if (fd_putchar == -1) 
+    {
+        perror("open");
+        return 1;
+    }
+    ft_putchar_fd('c', fd_putchar);
 }
