@@ -43,21 +43,22 @@ void build_n(char *str, int n, int size)
 char *ft_itoa(int n)
 {
     char *str;
+    long nbr = n;
     size_t size;
 
-    size = divide_nbr(n);
+    size = divide_nbr(nbr);
     str =  malloc((size + 1) * sizeof(char));
     if (n >= 0)
-        build_p(str, n, size);
+        build_p(str, nbr, size);
     else
-        build_n(str, n, size);
+        build_n(str, nbr, size);
     return str;
 }
 
 /*int main()
 {
-    printf("123 --> %s\n", ft_itoa(123));
+    printf("123 --> %s\n", ft_itoa(122231));
     printf("0 --> %s\n", ft_itoa(0));
-    printf("-123 --> %s\n", ft_itoa(-123));
+    printf("-123 --> %s\n", ft_itoa(-12321312));
     //printf("divided by %d\n", divide_nbr(n_itoa));
 }*/

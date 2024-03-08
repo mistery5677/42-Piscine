@@ -1,4 +1,4 @@
-#include <stdio.h>
+/*#include <stdio.h>
 #include <ctype.h>
 
 #include "libft.h"
@@ -210,15 +210,42 @@ int main()
     printf("TESTING FT_ITOA \n\n");
     printf("123 --> %s\n", ft_itoa(123));
     printf("0 --> %s\n", ft_itoa(0));
-    printf("-123 --> %s\n", ft_itoa(-123));
+    printf("-123 --> %s\n\n", ft_itoa(-123));
     //printf("divided by %d\n", divide_nbr(n_itoa));
 
     printf("TESTING FT_PUTCHAR_FD \n\n");
-    int fd_putchar = open("fd_putchar.txt", O_CREAT | S_IRWXU | O_WRONLY | O_APPEND);
+    int fd_putchar = open("fd_putchar.txt", O_CREAT | S_IRWXU | O_WRONLY | O_APPEND, 0666);
     if (fd_putchar == -1) 
-    {
         perror("open");
-        return 1;
-    }
+    else
+        printf("ficheiro criado com sucesso\n\n");
     ft_putchar_fd('c', fd_putchar);
-}
+    close(fd_putchar);
+
+    printf("TESTING FT_PUTSTR_FD \n\n");
+    int fd_putstr = open("fd_putstr.txt", O_CREAT | S_IRWXU | O_WRONLY | O_APPEND, 0666);
+    if (fd_putstr == -1) 
+        perror("open");
+    else
+        printf("ficheiro criado com sucesso\n\n");
+    ft_putstr_fd("hello", fd_putstr);
+    close(fd_putstr);
+
+        printf("TESTING FT_PUTENDL_FD \n\n");
+    int fd_putendl = open("fd_putendl.txt", O_CREAT | S_IRWXU | O_WRONLY | O_APPEND, 0666);
+    if (fd_putendl == -1) 
+        perror("open");
+    else
+        printf("ficheiro criado com sucesso\n\n");
+    ft_putendl_fd("hello", fd_putendl);
+    close(fd_putendl);
+
+        printf("TESTING FT_PUTNBR_FD \n\n");
+    int fd_putnbr = open("fd_putendl.txt", O_CREAT | S_IRWXU | O_WRONLY | O_APPEND, 0666);
+    if (fd_putnbr == -1) 
+        perror("open");
+    else
+        printf("ficheiro criado com sucesso\n\n");
+    ft_putnbr_fd(123455, fd_putnbr);
+    close(fd_putnbr);cd 
+}*/
