@@ -55,13 +55,16 @@ char **ft_split(char const *s, char c)
 
         word = 0;
         i = 0;
-        str_split = malloc(count_words(s, c) * sizeof(char));
+        if(!s || !(str_split = malloc(count_words(s, c) * sizeof(char))))
+                return NULL;
         while(word < count_words(s, c))
         {
                 while(s[i] == c)
                         i++;
-                str_split[word] = malloc(word_size(s, c) * sizeof(char));
-                build_str(str_split[word],s + i, c);
+                str_split[word] = malloc(word_size(&s[i], c) * sizeof(char));
+                if(!str_split[word])
+                        return NULL;
+                build_str(str_split[word],&s[i], c);
                 while(s[i] != c)
                         i++;
                 word++;
@@ -72,14 +75,14 @@ char **ft_split(char const *s, char c)
 
 /*int main()
 {
-        char const s_ft_split[] = "eeeee";
+        char const s_ft_split[] = "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse";
         char const s_ft_split1[] = "hhhhhheeehh";
         char const s_ft_split2[] = "eeeehabceeehhhh";
         char const s_ft_split3[] = "hhhhh";
         char const s_ft_split4[] = "eeehhehheee";
 
-        ft_split(s_ft_split3, 'e');
-        printf("count_words: 0 --> %d\n", count_words(s_ft_split, 'e'));
+        ft_split(s_ft_split, ' ');
+        printf("count_words: 0 --> %d\n", count_words(s_ft_split, ' '));
         printf("count_words: 2 --> %d\n", count_words(s_ft_split1, 'e'));
         printf("count_words: 2 --> %d\n", count_words(s_ft_split2, 'e'));
         printf("count_words: 1 --> %d\n", count_words(s_ft_split3, 'e'));
