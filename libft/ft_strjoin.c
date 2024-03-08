@@ -10,8 +10,6 @@ char *ft_strjoin(char const *s1, char const *s2)
         i = -1;
         len_s1 = ft_strlen(s1);
         len_s2 = ft_strlen(s2);
-        if(len_s1 == 0 && len_s2 == 0)
-                return NULL;
         new_str = malloc(((len_s1 + len_s2) + 1) + sizeof(char));
         if(new_str == NULL)
                 return NULL;
@@ -24,12 +22,12 @@ char *ft_strjoin(char const *s1, char const *s2)
         return new_str;
 }
 
-int main()
+/*int main()
 {
-    const char s1_strjoin[] = "hello";
+    const char s1_strjoin[] = "";
     const char s2_strjoin[] = "";
     char *result_strjoin = ft_strjoin(s1_strjoin, s2_strjoin);
     printf("TESTING FT_STRJOIN \n\n");
     printf("meu: %s\n\n", result_strjoin);
     free(result_strjoin);
-}
+}*/
