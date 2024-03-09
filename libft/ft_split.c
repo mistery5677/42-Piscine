@@ -31,47 +31,58 @@ int word_size(char const *s, char c)
         int i;
 
         i = 0;
-        while(s[i] != c)
+        while(s[i] != c && s[i])
                 i++;
         return i;
 }
 
-void build_str(char *str, const char *s, char c)
+char *build_str(char const *s, unsigned int start, unsigned int end)
 {
+        char *word;
         int i;
 
         i = 0;
-        while(s[i] != c)
+        word = malloc(((end - start) + 1) * sizeof(char));
+        if(!word)
+                return NULL;
+        while(start < end)
         {
-                str[i] = s[i];
+                word[i] = s[start];
+                start++;
                 i++;
-        }        
+        }
+        word[i] = '\0';
+        return word;
 }
+
+
 char **ft_split(char const *s, char c)
 {
         char **str_split;
         size_t i;
+        size_t start;
         int word;
 
+        start = 0;
         word = 0;
         i = 0;
-        if(!s || !(str_split = malloc(count_words(s, c) * sizeof(char))))
+        if(!s || !(str_split = malloc((count_words(s, c) + 1) * sizeof(char *))))
                 return NULL;
-        while(word < count_words(s, c))
+        while(s[i])
         {
-                while(s[i] == c)
+                if(s[i] == c)
                         i++;
-                str_split[word] = malloc(word_size(&s[i], c) * sizeof(char));
-                if(!str_split[word])
-                        return NULL;
-                build_str(str_split[word],&s[i], c);
-                while(s[i] != c)
-                        i++;
-                word++;
+                else if(s[i] != c)
+                {
+                        start = i;
+                        i += word_size(&s[i], c);
+                        str_split[word] = build_str(s, start, i);
+                        word++;
+                }          
         }
+        str_split[word] = '\0';
         return str_split;
 }
-
 
 /*int main()
 {
@@ -80,11 +91,15 @@ char **ft_split(char const *s, char c)
         char const s_ft_split2[] = "eeeehabceeehhhh";
         char const s_ft_split3[] = "hhhhh";
         char const s_ft_split4[] = "eeehhehheee";
-
-        ft_split(s_ft_split, ' ');
+        char **str_split = ft_split(s_ft_split, ' ');
+        
+        printf("%s\n", str_split[0]);
+        printf("%s\n", str_split[11]);
         printf("count_words: 0 --> %d\n", count_words(s_ft_split, ' '));
         printf("count_words: 2 --> %d\n", count_words(s_ft_split1, 'e'));
         printf("count_words: 2 --> %d\n", count_words(s_ft_split2, 'e'));
         printf("count_words: 1 --> %d\n", count_words(s_ft_split3, 'e'));
         printf("count_words: 2 --> %d\n", count_words(s_ft_split4, 'e'));
+
+        free(str_split);
 }*/
