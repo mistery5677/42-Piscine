@@ -2,24 +2,24 @@
 
 t_list *ft_lstlast(t_list *lst)
 {
-        t_list *last_list;
-        t_list *temp;
-        int count;
-        int size;
-        
-        size = ft_lstsize(lst);
-        temp = lst;
-        count = 0;
-        while(count < size)
-        {
-            last_list = temp;
-            temp = last_list->next;
-            count++;
-        }
-        return last_list;
+    t_list *last_list;
+    t_list *temp;
+    int count;
+    int size;
+
+    size = ft_lstsize(lst);
+    temp = lst;
+    count = 0;
+    while (count < size)
+    {
+        last_list = temp;
+        temp = last_list->next;
+        count++;
+    }
+    return last_list;
 }
 
-int main() 
+/*int main()
 {
     t_list *head = NULL;
 
@@ -42,4 +42,4 @@ int main()
     free(node1);
     free(node2);
     free(node3);
-}
+}*/

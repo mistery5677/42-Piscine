@@ -80,7 +80,7 @@ char **ft_split(char const *s, char c)
                         word++;
                 }          
         }
-        str_split[word] = '\0';
+        str_split[word] = NULL;
         return str_split;
 }
 
