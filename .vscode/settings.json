@@ -5,6 +5,7 @@
         "stdbool.h": "c",
         "unistd.h": "c",
         "stdlib.h": "c",
-        "libft.h": "c"
+        "libft.h": "c",
+        "ft_lstadd_back": "c"
     }
 }
