@@ -2,21 +2,20 @@
 
 t_list *ft_lstlast(t_list *lst)
 {
-    t_list *last_list;
     t_list *temp;
     int count;
     int size;
 
     size = ft_lstsize(lst);
     temp = lst;
-    count = 0;
+    count = 1;
     while (count < size)
     {
-        last_list = temp;
-        temp = last_list->next;
+        temp = lst->next;
+        lst = temp;
         count++;
     }
-    return last_list;
+    return temp;
 }
 
 /*int main()

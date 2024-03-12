@@ -9,16 +9,23 @@ void ft_lstclear(t_list **lst, void (*del)(void *))
     {
         while(temp->next != NULL)
         {
+            del(temp->content);
             temp = temp->next;
-            ft_lstdelone(temp, del);
+            *lst = temp->next;
         }
+        del(temp->content);
     }
-
 }
 
-/*int main()
+/*void delete_lst(void *content)
 {
-    t_list *head;
+    free(content);
+}
+
+#include <stdio.h>
+int main()
+{
+    t_list *head  = malloc(sizeof(t_list));
 
     t_list *node1 = malloc(sizeof(t_list));
     t_list *node2 = malloc(sizeof(t_list));
@@ -28,13 +35,11 @@ void ft_lstclear(t_list **lst, void (*del)(void *))
     node2->content = "Node 2";
     node3->content = "Node 3";
 
+    head->next = node3;
     node3->next = node2;
     node2->next = node1;
     node1->next = NULL;
 
     printf("before free: %s\n", (char *)node2->content);
-    ft_lstdelone(node2, &delete_lst);
-    printf("content free");
-    free(node1);
-    free(node3);
+    ft_lstclear(&head, &delete_lst);
 }*/
