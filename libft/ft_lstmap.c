@@ -1,27 +1,28 @@
 #include "libft.h"
 
-void ft_lstclear(t_list **lst, void (*del)(void *))
+t_list *ft_lstmap(t_list *lst, void*(*f)(void *), void (*del)(void *))
 {
-    t_list *temp;
+    t_list *map;
+    t_list *new_node;
 
-    if(lst)
-    {
-        while((*lst)!= NULL)
+    if(lst == NULL)
+        return 0;
+    map = NULL;
+        while(lst)
         {
-            temp = (*lst)->next;
-            ft_lstdelone(*lst, del);
-            *lst = temp;
+            new_node = ft_lstnew(f(lst->content));
+            if(new_node == NULL)
+            {
+                ft_lstclear(&new_node, del);
+                return NULL;
+            }
+            ft_lstadd_back(&map, new_node);
+            lst = lst->next;
         }
-    }
+    return map;
 }
 
-/*void delete_lst(void *content)
-{
-    free(content);
-}
-
-#include <stdio.h>
-int main()
+/*int main()
 {
     t_list *head  = malloc(sizeof(t_list));
 
@@ -39,5 +40,4 @@ int main()
     node1->next = NULL;
 
     printf("before free: %s\n", (char *)node2->content);
-    ft_lstclear(&head, &delete_lst);
 }*/
